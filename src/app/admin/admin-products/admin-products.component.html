@@ -1,21 +1,34 @@
 <p>
     <a routerLink="/admin/products/new" class="btn btn-primary">Add a new product</a>
 </p>
-<table class="table">
+<p>
+    <input 
+    #query
+    (keyup)="filter(query.value)"
+    type="text" class="form-control" placeholder="Rechercher dans les produits...">
+</p>
+
+<table class="table" [mfData]="filteredProducts" #mf="mfDataTable" [mfRowsOnPage]="10">
     <thead>
         <tr>
-            <th>Titre</th>
-            <th>Prix</th>
+            <th><mfDefaultSorter by="title">Titre</mfDefaultSorter></th>
+            <th><mfDefaultSorter by="price">Prix</mfDefaultSorter></th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let p of products$ | async">
+        <tr *ngFor="let p of mf.data">
             <td>{{ p.payload.val().title }}</td>
-            <td>{{ p.payload.val().price | currency:'EUR':true}}</td>
+            <td>{{ p.payload.val().price | currency:'EUR':'symbol'}}</td>
             <td>
-                <a [routerLink]="['/admin/products/', p.key]">Edit</a>
+                <a [routerLink]="['/admin/products/', p.key]">Modifier</a> - 
+                <a class="delete-btn" (click)="delete(p.key)" style="cursor: pointer;">Supprimer</a>
             </td>
         </tr>
     </tbody>
+    <tfoot>
+        <tr>
+            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>yo
+        </tr>
+    </tfoot>
 </table>

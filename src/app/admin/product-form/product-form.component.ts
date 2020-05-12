@@ -3,6 +3,7 @@ import { CategoryService } from 'src/app/category.service';
 import { ProductService } from 'src/app/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators'
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-product-form',
@@ -11,7 +12,7 @@ import { take } from 'rxjs/operators'
 })
 export class ProductFormComponent {
   categories$;
-  product = {};
+  product: Product = {title: "", price: 0, category: "", imageUrl: ""};
   id;
 
   constructor(
@@ -31,14 +32,6 @@ export class ProductFormComponent {
     else this.productService.create(product);
 
     this.router.navigate(['admin/products'])
-  }
-
-  delete() {
-    if (!confirm('Êtes-vous sûr de vouloir supprimer le produit ?')) return;
-    
-    this.productService.delete(this.id);
-    this.router.navigate(['admin/products'])
-
   }
 
 }

@@ -21,6 +21,8 @@
     "@angular/platform-browser-dynamic": "~9.0.5",
     "@angular/router": "~9.0.5",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
+    "angular-4-data-table": "^0.4.6",
+    "angular-9-datatable": "^0.1.1",
     "angularfire2": "^5.4.2",
     "bootstrap": "^4.4.1",
     "firebase": "^7.14.3",

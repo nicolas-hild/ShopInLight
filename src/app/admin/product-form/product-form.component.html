@@ -4,7 +4,7 @@
             <img [src]="product.imageUrl" class="card-img-top" *ngIf="product.imageUrl">
             <div class="card-body">
               <h5 class="card-title">{{ product.title }}</h5>
-              <p class="card-text">{{ product.price | currency:'EUR':true }}</p>
+              <p class="card-text">{{ product.price | currency:'EUR':'symbol' }}</p>
             </div>
         </div>
     </div>
@@ -44,16 +44,13 @@
         
             <div class="form-group">
                 <label for="imageUrl">Image URL</label>
-                <input #imageUrl="ngModel"  [(ngModel)]="product.imageUrl" name="imageUrl" id="imageUrl" type="text" class="form-control" required url>
+                <input #imageUrl="ngModel"  [(ngModel)]="product.imageUrl" name="imageUrl" id="imageUrl" type="text" class="form-control" required>
                 <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
-                    <div *ngIf="price.errors.required">L'image URL est obligatoire !</div>
-                    <div *ngIf="price.errors.url">Il faut une URL valide !</div>
+                    L'image URL est obligatoire !
                 </div>
             </div>
         
             <button class="btn btn-primary">Sauvegarder</button>
-            <button type="button" class="btn btn-danger" (click)="delete()">Supprimer</button>
-            
         </form>
     </div>
 </div>

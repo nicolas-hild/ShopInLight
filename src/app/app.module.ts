@@ -8,6 +8,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { FormsModule } from '@angular/forms';
+import { NgxDataTableModule } from 'angular-9-datatable';
 
 import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
@@ -45,7 +46,8 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    NgxDataTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
