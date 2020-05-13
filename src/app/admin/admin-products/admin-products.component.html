@@ -8,11 +8,12 @@
     type="text" class="form-control" placeholder="Rechercher dans les produits...">
 </p>
 
+
 <table class="table" [mfData]="filteredProducts" #mf="mfDataTable" [mfRowsOnPage]="10">
-    <thead>
+    <thead class="thead-light">
         <tr>
-            <th><mfDefaultSorter by="title">Titre</mfDefaultSorter></th>
-            <th><mfDefaultSorter by="price">Prix</mfDefaultSorter></th>
+            <th>Titre</th>
+            <th>Prix</th>
             <th></th>
         </tr>
     </thead>
@@ -28,7 +29,9 @@
     </tbody>
     <tfoot>
         <tr>
-            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>yo
+            <td colspan="3">
+                <mfBootstrapPaginator></mfBootstrapPaginator>
+            </td>
         </tr>
     </tfoot>
 </table>

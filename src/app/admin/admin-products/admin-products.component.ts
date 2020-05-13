@@ -3,6 +3,7 @@ import { ProductService } from 'src/app/product.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-admin-products',
   templateUrl: './admin-products.component.html',
@@ -12,6 +13,8 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   products: any[];
   filteredProducts: any[];
   subscription: Subscription;
+  columnSort: string = "title";
+
 
   constructor(private productService: ProductService, private router: Router) {
     this.subscription = this.productService.getAll().subscribe(products => this.filteredProducts = this.products = products);
@@ -23,7 +26,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
       this.products.filter(p => p.payload.val().title.toLowerCase().includes(query.toLowerCase())) : this.products;
   }
 
-   delete(id) {
+  delete(id) {
     if (!confirm('Êtes-vous sûr de vouloir supprimer le produit ?')) return;
     
     this.productService.delete(id);

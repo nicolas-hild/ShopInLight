@@ -9,6 +9,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { FormsModule } from '@angular/forms';
 import { NgxDataTableModule } from 'angular-9-datatable';
+import {MatTableModule} from '@angular/material/table';
 
 import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
@@ -47,7 +48,8 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
     AngularFireAuthModule,
     NgbModule,
     FormsModule,
-    NgxDataTableModule
+    NgxDataTableModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
