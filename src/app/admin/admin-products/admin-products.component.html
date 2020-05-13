@@ -1,1 +1,37 @@
-<p>admin-products works!</p>
+<p>
+    <a routerLink="/admin/products/new" class="btn btn-primary">Add a new product</a>
+</p>
+<p>
+    <input 
+    #query
+    (keyup)="filter(query.value)"
+    type="text" class="form-control" placeholder="Rechercher dans les produits...">
+</p>
+
+
+<table class="table" [mfData]="filteredProducts" #mf="mfDataTable" [mfRowsOnPage]="10">
+    <thead class="thead-light">
+        <tr>
+            <th>Titre</th>
+            <th>Prix</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of mf.data">
+            <td>{{ p.payload.val().title }}</td>
+            <td>{{ p.payload.val().price | currency:'EUR':'symbol'}}</td>
+            <td>
+                <a [routerLink]="['/admin/products/', p.key]">Modifier</a> - 
+                <a class="delete-btn" (click)="delete(p.key)" style="cursor: pointer;">Supprimer</a>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                <mfBootstrapPaginator></mfBootstrapPaginator>
+            </td>
+        </tr>
+    </tfoot>
+</table>
