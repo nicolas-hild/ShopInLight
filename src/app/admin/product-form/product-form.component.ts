@@ -12,7 +12,7 @@ import { Product } from 'src/app/models/product';
 })
 export class ProductFormComponent {
   categories$;
-  product: Product = {title: "", price: NaN, category: "", imageUrl: ""};
+  product: Product = {id: "", title: "", price: NaN, category: "", imageUrl: ""};
   id;
 
   constructor(
