@@ -1,12 +1,6 @@
 <div class="row">
     <div class="col-12 col-md-3">
-        <div class="card">
-            <img [src]="product.imageUrl" class="card-img-top" *ngIf="product.imageUrl">
-            <div class="card-body">
-              <h5 class="card-title">{{ product.title }}</h5>
-              <p class="card-text">{{ product.price | currency:'EUR':'symbol' }}</p>
-            </div>
-        </div>
+        <product-card [product]="product" [showAction]="false"></product-card>
     </div>
     <div class="col-12 col-md-9">
         <form #f="ngForm" (ngSubmit)="save(f.value)">
@@ -35,7 +29,7 @@
                 <label for="category">Catégorie</label>
                 <select #category="ngModel"  [(ngModel)]="product.category" name="category" id="category" class="form-control" required>
                     <option value=""></option>
-                    <option *ngFor="let c of categories$ | async" [value]="c.key">{{c.payload.val().name}}</option>
+                    <option *ngFor="let c of categories$ | async" [value]="c.id">{{c.name}}</option>
                 </select>
                 <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
                     La catégorie est obligatoire !

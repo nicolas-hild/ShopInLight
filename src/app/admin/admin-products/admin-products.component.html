@@ -19,11 +19,11 @@
     </thead>
     <tbody>
         <tr *ngFor="let p of mf.data">
-            <td>{{ p.payload.val().title }}</td>
-            <td>{{ p.payload.val().price | currency:'EUR':'symbol'}}</td>
+            <td>{{ p.title }}</td>
+            <td>{{ p.price | currency:'EUR':'symbol'}}</td>
             <td>
-                <a [routerLink]="['/admin/products/', p.key]">Modifier</a> - 
-                <a class="delete-btn" (click)="delete(p.key)" style="cursor: pointer;">Supprimer</a>
+                <a [routerLink]="['/admin/products/', p.id]">Modifier</a> - 
+                <a class="delete-btn" (click)="delete(p.id)" style="cursor: pointer;">Supprimer</a>
             </td>
         </tr>
     </tbody>

@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ProductService } from 'src/app/product.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { Product } from 'src/app/models/product';
 
 
 @Component({
@@ -9,9 +10,9 @@ import { Router } from '@angular/router';
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.scss']
 })
-export class AdminProductsComponent implements OnInit, OnDestroy {
-  products: any[];
-  filteredProducts: any[];
+export class AdminProductsComponent implements OnDestroy {
+  products: Product[];
+  filteredProducts: Product[];
   subscription: Subscription;
   columnSort: string = "title";
 
@@ -23,7 +24,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
 
   filter(query: string) {
     this.filteredProducts = (query) ?
-      this.products.filter(p => p.payload.val().title.toLowerCase().includes(query.toLowerCase())) : this.products;
+      this.products.filter(p => p.title.toLowerCase().includes(query.toLowerCase())) : this.products;
   }
 
   delete(id) {
@@ -33,11 +34,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
     this.router.navigate(['admin/products'])
   }
 
-  ngOnInit(): void {
-  }
-
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
 }
