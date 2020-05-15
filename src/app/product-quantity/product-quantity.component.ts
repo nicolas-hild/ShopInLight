@@ -1,17 +1,16 @@
 import { Component, Input } from '@angular/core';
-import { Product } from '../models/product';
 import { ShoppingCartService } from '../shopping-cart.service';
+import { Product } from '../models/product';
 import { ShoppingCart } from '../models/shopping-cart';
 
 @Component({
-  selector: 'product-card',
-  templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.scss']
+  selector: 'product-quantity',
+  templateUrl: './product-quantity.component.html',
+  styleUrls: ['./product-quantity.component.scss']
 })
-export class ProductCardComponent {
+export class ProductQuantityComponent {
   @Input('product') product: Product;
   @Input('shoppingCart') shoppingCart: ShoppingCart;
-  @Input('showActions') showActions = true;
 
   constructor(private cartService: ShoppingCartService) { }
 
@@ -20,4 +19,7 @@ export class ProductCardComponent {
     this.cartService.addToCart(this.product);
   }
 
+  removeFromCart() {
+    this.cartService.removeFromCart(this.product);
+  }
 }
