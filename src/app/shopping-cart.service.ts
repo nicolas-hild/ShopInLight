@@ -19,15 +19,20 @@ export class ShoppingCartService {
     });
   }
 
+  async clearCart() {
+    let cartId = await this.getOrCreateCartId();
+    this.db.object('/shopping-carts/'+ cartId +'/items').remove();
+  }
+
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCartId();
     return this.db.object("/shopping-carts/" + cartId)
-      .valueChanges().pipe(map((cart: any) => new ShoppingCart(cart.items)));
+      .valueChanges().pipe(map((cart: any) => new ShoppingCart(cart.items || {})));
   }
 
   private async getOrCreateCartId(): Promise<string> {
-    let cartId = localStorage.getItem('cartId')
-    if (cartId) return cartId
+    let cartId = localStorage.getItem('cartId');
+    if (cartId) return cartId;
     
     let result = await this.create();
     localStorage.setItem('cartId', result.key);
@@ -50,7 +55,10 @@ export class ShoppingCartService {
     let cartId = await this.getOrCreateCartId();
     let item$: AngularFireObject<any> = this.getItem(cartId, product.id)
     item$.valueChanges().pipe(take(1)).subscribe(item => {
-      item$.update({ product: product, quantity:  (item?.quantity || 0) + change});
+      let quantity = (item?.quantity || 0) + change;
+
+      if (quantity === 0) item$.remove();
+      else item$.update({ product: product, quantity:  quantity });
     });
   }
 }
