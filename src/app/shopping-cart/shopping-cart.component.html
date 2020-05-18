@@ -1,7 +1,11 @@
 <h1>Votre Panier</h1>
 
 <ng-container *ngIf="cart$ | async as cart">
-    <p>Vous avez {{ cart.totalItemsCount }} produits dans votre panier</p>
+    <p>
+        Vous avez {{ cart.totalItemsCount }} produits dans votre panier
+        <button *ngIf="cart.items.length" (click)="clearCart()" class="btn btn-light btn-sm">Vider le panier</button>
+    </p>
+    
 
     <table class="table">
         <thead>
@@ -28,7 +32,7 @@
                 </td>
             </tr>
         </tbody>
-        <tfoot *ngIf="cart.items.length > 0">
+        <tfoot *ngIf="cart.items.length">
             <tr>
                 <th></th>
                 <th></th>
@@ -40,5 +44,5 @@
         </tfoot>
     </table>
 
-    <button (click)="clearCart()" class="btn btn-danger btn-sm">Vider le panier</button>
+    <a *ngIf="cart.items.length" routerLink="/check-out" class="btn btn-primary btn-sm">Finaliser la commande</a>
 </ng-container>
