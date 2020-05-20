@@ -1,1 +1,25 @@
-<p>my-orders works!</p>
+<table class="table" [mfData]="orders" #mf="mfDataTable" [mfRowsOnPage]="10">
+    <thead class="thead-light">
+        <tr>
+            <th>Date</th>
+            <th>Prix</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let o of mf.data">
+            <td>{{ o.datePlaced | date:'fullDate' }}</td>
+            <td>{{ o.totalPrice | currency:'EUR':'symbol'}}</td>
+            <td>
+                <a [routerLink]="['/my/orders', o.id]">Voir</a>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                <mfBootstrapPaginator></mfBootstrapPaginator>
+            </td>
+        </tr>
+    </tfoot>
+</table>

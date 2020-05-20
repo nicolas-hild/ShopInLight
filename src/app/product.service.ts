@@ -19,7 +19,7 @@ export class ProductService {
   }
 
   getProduct(productId): AngularFireObject<Product> {
-    return this.db.object('/products/' + productId)
+    return this.db.object('/products/' + productId);
   }
 
   update(productId, product) {

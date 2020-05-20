@@ -5,11 +5,11 @@ import { OrderService } from '../order.service';
 import { take } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-order-success',
-  templateUrl: './order-success.component.html',
-  styleUrls: ['./order-success.component.scss']
+  selector: 'app-order',
+  templateUrl: './order.component.html',
+  styleUrls: ['./order.component.scss']
 })
-export class OrderSuccessComponent implements OnInit {
+export class OrderComponent implements OnInit {
   order = { datePlaced: "", items: [], shipping: {}, totalPrice: "", userid: "" };
 
   constructor(private route: ActivatedRoute, private orderService: OrderService, private db: AngularFireDatabase) { 
