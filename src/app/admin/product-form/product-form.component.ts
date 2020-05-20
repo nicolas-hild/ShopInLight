@@ -21,7 +21,7 @@ export class ProductFormComponent {
     private router: Router,
     private route: ActivatedRoute) {
 
-    this.categories$ = this.categoryService.getAll().pipe(map(products => products.map(this.returnCategories)));
+    this.categories$ = this.categoryService.getAll();
     this.id = this.route.snapshot.paramMap.get('id');
 
     if (this.id) this.productService.getProduct(this.id).valueChanges().pipe(take(1)).subscribe(p => this.product = p);
@@ -33,11 +33,4 @@ export class ProductFormComponent {
 
     this.router.navigate(['admin/products'])
   }
-
-  returnCategories = item => {
-    const category = item.payload.val();
-    category.id = item.key;
-    return category;
-  }
-
 }

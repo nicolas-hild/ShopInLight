@@ -1,0 +1,38 @@
+<h4>Récapitulatif de votre commande passée le {{ order.datePlaced | date:'dd/MM/y' }}</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Produit</th>
+            <th class="text-center">Quantité</th>
+            <th class="text-right">Prix</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of order.items">
+            <td>
+                <img class="product-avatar" src="{{item.product.imageUrl}}" alt="{{item.product.title}}">
+            </td>
+            <td class="cart-cells product">
+                {{ item.product.title }}
+            </td>
+            <td class="cart-cells quantity text-center">
+                {{ item.quantity }}
+            </td>
+            <td class="cart-cells price text-right">
+                {{ item.totalPrice | currency:'EUR':'symbol' }}
+            </td>
+        </tr>
+    </tbody>
+    <tfoot *ngIf="order.items.length">
+        <tr>
+            <th></th>
+            <th></th>
+            <th class="text-right">Total :</th>
+            <th class="text-right">
+                {{ order.totalPrice | currency:'EUR':'symbol' }}
+            </th>
+        </tr>
+    </tfoot>
+</table>

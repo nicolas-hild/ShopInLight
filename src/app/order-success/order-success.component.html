@@ -1,1 +1,15 @@
-<p>order-success works!</p>
+<h1>Votre commande a bien été passée !</h1>
+
+<div>
+    <h4>Récapitulatif de la commande :</h4>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let item of order.items">
+            {{ item.quantity }} x {{ item.product.title }}
+            <div class="float-right">{{item.totalPrice | currency:'EUR':'symbol'}}</div>
+        </li>
+        <li class="list-group-item font-weight-bold">
+            Total :
+            <div class="float-right">{{order.totalPrice | currency:'EUR':'symbol'}}</div>
+        </li>
+    </ul>
+</div>

@@ -1,11 +1,14 @@
 import { ShoppingCart } from './shopping-cart';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 export class Order {
     datePlaced: number;
+    totalPrice;
     items: any[];
 
     constructor(public userId: string, public shipping: any, shoppingCart: ShoppingCart) {
         this.datePlaced = new Date().getTime();
+        this.totalPrice = shoppingCart.totalPrice;
 
         this.items = shoppingCart.items.map(i => {
             return {
