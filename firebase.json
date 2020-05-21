@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/ShopInLigh",
+    "public": "dist/ShopInLight",
     "ignore": [
       "firebase.json",
       "**/.*",
